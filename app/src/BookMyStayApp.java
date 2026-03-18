@@ -1,16 +1,91 @@
-public class BookMyStayApp {
-    public static void main(String[] args) {
+// Abstract class representing a generic Room
+abstract class Room {
 
-        // Printing welcome message
-        System.out.println("=================================");
-        System.out.println("      BOOK MY STAY APP");
-        System.out.println("   Hotel Booking System v1.0");
-        System.out.println("=================================");
+    protected String roomType;
+    protected int beds;
+    protected int size;
+    protected double price;
 
-        System.out.println("Welcome to the Hotel Booking Management System!");
-        System.out.println("Application started successfully.");
+    // Constructor
+    public Room(String roomType, int beds, int size, double price) {
+        this.roomType = roomType;
+        this.beds = beds;
+        this.size = size;
+        this.price = price;
+    }
 
-        System.out.println("Thank you for using Book My Stay App.");
+    // Method to display room details
+    public void displayDetails() {
+        System.out.println("Room Type : " + roomType);
+        System.out.println("Beds      : " + beds);
+        System.out.println("Size      : " + size + " sq.ft");
+        System.out.println("Price     : Rs." + price);
     }
 }
 
+
+// Single Room class
+class SingleRoom extends Room {
+
+    public SingleRoom() {
+        super("Single Room", 1, 200, 2500);
+    }
+}
+
+
+// Double Room class
+class DoubleRoom extends Room {
+
+    public DoubleRoom() {
+        super("Double Room", 2, 350, 4000);
+    }
+}
+
+
+// Suite Room class
+class SuiteRoom extends Room {
+
+    public SuiteRoom() {
+        super("Suite Room", 3, 600, 8000);
+    }
+}
+
+
+// Main Application Class
+public class BookMyStayApp {
+
+    public static void main(String[] args) {
+
+        System.out.println("=================================");
+        System.out.println("     BOOK MY STAY APP");
+        System.out.println("   Hotel Booking System v2.1");
+        System.out.println("=================================\n");
+
+        // Create room objects
+        Room single = new SingleRoom();
+        Room doubleRoom = new DoubleRoom();
+        Room suite = new SuiteRoom();
+
+        // Static availability variables
+        int singleAvailability = 10;
+        int doubleAvailability = 6;
+        int suiteAvailability = 3;
+
+        // Display Single Room
+        single.displayDetails();
+        System.out.println("Available Rooms : " + singleAvailability);
+        System.out.println("---------------------------------\n");
+
+        // Display Double Room
+        doubleRoom.displayDetails();
+        System.out.println("Available Rooms : " + doubleAvailability);
+        System.out.println("---------------------------------\n");
+
+        // Display Suite Room
+        suite.displayDetails();
+        System.out.println("Available Rooms : " + suiteAvailability);
+        System.out.println("---------------------------------\n");
+
+        System.out.println("Room information displayed successfully.");
+    }
+}
